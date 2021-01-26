@@ -1,0 +1,43 @@
+:root {
+    /* make the backend contents as wide as the browser window */
+    --body-max-width: 100%;
+    /* make the base font size smaller */
+
+    --font-size-base: 20px; /* Formulario */
+    --font-size-sm: 15px; /* Mod y Eliminar */
+
+    --font-size-xl: 47px; /* Titulos de tablas */
+
+    --font-size-lg: 30px; /* ¿? */
+    --font-size-xs: 30px; /* ¿? */
+
+    /* remove all border radius to make corners straight */
+    --border-radius: 0px;
+    
+}
+
+.sidebar-menu .header { /* TITULO DEL MENU */
+    color: var(--gray-600);
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 15px;
+    padding: 7px 5px 7px 0;
+    text-transform: uppercase;
+}
+
+.sidebar-menu a {
+    color: var(--text-color-dark);
+    display: block;
+    line-height: 50px; /* Espacio entre elementos del menu*/
+    padding: 4px 5px 8px 0;
+    font-size: 20px; /* Tamaño Letra*/
+}
+
+.sidebar-menu .menu-icon { /* ICONOS DEL MENU */
+    color: currentColor;
+    filter: opacity(55%);
+    font-size: 21px; /* Tamaño */
+    margin-right: 4px;
+    vertical-align: text-bottom;
+    width: 20px;
+}
