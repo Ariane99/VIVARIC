@@ -44,12 +44,12 @@ class PersonaCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('nombre'),
-            TextField::new('email'),
-            TextField::new('ci'),
-            TextField::new('direccion'),
-            TextField::new('roles'),
-            PasswordField::new('password'),
+            TextField::new('nombre','Nombre'),
+            TextField::new('email','Email'),
+            TextField::new('ci','Ci'),
+            TextField::new('direccion','Direccion'),
+            TextField::new('roles','Rol'),
+            PasswordField::new('password', 'Contraseña'),
         ];
         
     }

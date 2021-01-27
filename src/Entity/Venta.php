@@ -20,6 +20,21 @@ class Venta
     /**
      * @ORM\Column(type="string", length=20)
      */
+    private $cicliente;
+
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $nombrecliente;
+
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $ciudad;
+
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
     private $tipo_comprobante;
 
     /**
@@ -89,6 +104,42 @@ class Venta
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getCiCliente(): ?string
+    {
+        return $this->cicliente;
+    }
+
+    public function setCiCliente(string $cicliente): self
+    {
+        $this->cicliente = $cicliente;
+
+        return $this;
+    }
+
+    public function getNombreCliente(): ?string
+    {
+        return $this->nombrecliente;
+    }
+
+    public function setNombreCliente(string $nombrecliente): self
+    {
+        $this->nombrecliente = $nombrecliente;
+
+        return $this;
+    }
+
+    public function getCiudad(): ?string
+    {
+        return $this->ciudad;
+    }
+
+    public function setCiudad(string $ciudad): self
+    {
+        $this->ciudad = $ciudad;
+
+        return $this;
     }
 
     public function getTipoComprobante(): ?string

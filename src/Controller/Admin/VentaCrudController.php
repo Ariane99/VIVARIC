@@ -44,6 +44,9 @@ class VentaCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            TextField::new('cicliente','CI Cliente'),
+            TextField::new('nombrecliente','Nombre Cliente'),
+            TextField::new('ciudad','Ciudad Cliente'),
             TextField::new('tipo_comprobante','Tipo de Comprobante'),
             TextField::new('serie_comprobante','Serie de Comprobante'),
             TextField::new('num_comprobante','N° de Comprobante'),

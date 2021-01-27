@@ -28,10 +28,9 @@ class IngresoCrudController extends AbstractCrudController
     public function configureActions(Actions $actions): Actions
     {
         return $actions
-
             //Agregamos Detail (Ver detalle) de index
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
-
+            
             ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
                 return $action->setIcon('fas fa-plus-square')->setLabel(" Nuevo Ingreso");
             })
@@ -71,5 +70,4 @@ class IngresoCrudController extends AbstractCrudController
             AssociationField::new('persona'),
         ];
     }
-
 }

@@ -57,6 +57,23 @@ class Ingreso
      */
     private $persona;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Proveedores", inversedBy="ingreso")
+     */
+    private $proveedor;
+
+    public function getProveedor(): ?Proveedor
+    {
+        return $this->proveedor;
+    }
+
+    public function setProveedor(?Persona $proveedor): self
+    {
+        $this->proveedor = $proveedor;
+
+        return $this;
+    }
+
     public function getPersona(): ?Persona
     {
         return $this->persona;
