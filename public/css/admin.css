@@ -13,7 +13,6 @@
 
     /* remove all border radius to make corners straight */
     --border-radius: 0px;
-    
 }
 
 .sidebar-menu .header { /* TITULO DEL MENU */
@@ -41,3 +40,4 @@
     vertical-align: text-bottom;
     width: 20px;
 }
+

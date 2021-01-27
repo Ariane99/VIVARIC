@@ -37,15 +37,16 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Vivaric');
+            ->setTitle('<img src="castilloalv.png" style="width:200px;height:160px;"/><span>&nbsp; &nbsp;</span><img src="letras.png" style="height:70px;"/>')
+            ->setFaviconPath('vivaricLogo.png');
     }
 
     public function configureMenuItems(): iterable
     {
-        //yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::section('Menu');        
+        
+        yield MenuItem::section('Menu');   
         yield MenuItem::linkToCrud('Categoria', 'fas fa-tags', Categoria::class);
-        yield MenuItem::linkToCrud('Articulo', 'fas fa-boxes', Articulo::class);
+        yield MenuItem::linkToCrud('Invertario', 'fas fa-boxes', Articulo::class);
         yield MenuItem::linkToCrud('Ingreso', 'fas fa-people-carry', Ingreso::class);        
         yield MenuItem::linkToCrud('Detalle ingreso', 'fas fa-cart-plus', DetalleIngreso::class);
         yield MenuItem::linkToCrud('Venta', 'fas fa-store', Venta::class);        
