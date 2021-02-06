@@ -41,6 +41,14 @@ class VentaCrudController extends AbstractCrudController
         ;
     }
 
+    //Configuracion de los 3 puntos
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->showEntityActionsAsDropdown()
+        ;
+    }
+
     public function configureFields(string $pageName): iterable
     {
         return [

@@ -38,22 +38,25 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('<img src="castilloalv.png" style="width:200px;height:160px;"/><img src="letras.png" style="height:70px;"/>')
-            ->setFaviconPath('vivaricLogo.png');
+            ->setTitle('<img src="castilloalv.png" style="width:200px;height:160px;"/><img src="letrasVivaric.png" style="height:70px;"/>')
+            ->setFaviconPath('vivaricLogo.png')
+        ;
     }
+
+    
 
     public function configureMenuItems(): iterable
     {
         
         yield MenuItem::section('Menu');   
         yield MenuItem::linkToCrud('Categoria', 'fas fa-tags', Categoria::class);
+        yield MenuItem::linkToCrud('Detalle ingreso', 'fas fa-cart-plus', DetalleIngreso::class);
         yield MenuItem::linkToCrud('Invertario', 'fas fa-boxes', Articulo::class);
         yield MenuItem::linkToCrud('Ingreso', 'fas fa-people-carry', Ingreso::class);        
-        yield MenuItem::linkToCrud('Detalle ingreso', 'fas fa-cart-plus', DetalleIngreso::class);
         yield MenuItem::linkToCrud('Venta', 'fas fa-store', Venta::class);        
         yield MenuItem::linkToCrud('Detalle Venta', 'fas fa-cart-plus', DetalleVenta::class);        
         yield MenuItem::linkToCrud('Persona', 'fas fa-users', Persona::class);       
-        yield MenuItem::linkToCrud('Proveedor', 'fas fa-users', Proveedores::class);
+        yield MenuItem::linkToCrud('Proveedor', 'fas fa-parachute-box', Proveedores::class); 
     }
 
     //CSS PERSONALIZADO

@@ -148,6 +148,7 @@ class Articulo
 
     public function getStock(): ?int
     {
+
         return $this->stock;
     }
 
@@ -162,4 +163,5 @@ class Articulo
     {
         return $this->nombreArt;
     }
+
 }

@@ -9,6 +9,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 ////////////
 
 use App\Entity\Articulo;
+
+use App\Entity\Categoria;//tratando de llamar de otra entidad
+
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ColorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
@@ -40,6 +43,14 @@ class ArticuloCrudController extends AbstractCrudController
             ->update(Crud::PAGE_INDEX, Action::DELETE, function (Action $action) {
                 return $action->setIcon('fas fa-eraser')->setLabel(" Eliminar");
             })
+        ;
+    }
+
+    //Configuracion de los 3 puntos
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->showEntityActionsAsDropdown()
         ;
     }
 

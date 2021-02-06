@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\IngresoRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+use App\Repository\IngresoRepository;
+use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=IngresoRepository::class)
  */
@@ -37,9 +39,11 @@ class Ingreso
      */
     private $fecha_hora;
 
+
     /**
      * @ORM\Column(type="decimal", precision=4, scale=2)
      */
+    
     private $impuesto;
 
     /**
@@ -48,7 +52,7 @@ class Ingreso
     private $estado;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\DetalleIngreso", mappedBy="ingreso")
+     * @ORM\OneToMany(targetEntity="App\Entity\DetalleIngreso", mappedBy="ingreso", cascade={"persist"}))
      */
     private $detalleingreso;
 
@@ -60,16 +64,17 @@ class Ingreso
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Proveedores", inversedBy="ingreso")
      */
-    private $proveedor;
+    private $proveedores;
 
-    public function getProveedor(): ?Proveedor
+    
+    public function getProveedores(): ?Proveedores
     {
-        return $this->proveedor;
+        return $this->proveedores;
     }
 
-    public function setProveedor(?Persona $proveedor): self
+    public function setProveedores(?Proveedores $proveedores): self
     {
-        $this->proveedor = $proveedor;
+        $this->proveedores = $proveedores;
 
         return $this;
     }
@@ -86,17 +91,16 @@ class Ingreso
         return $this;
     }
 
-    public function getDetalleIngreso(): ?DetalleIngreso
+    /*public function getDetalleIngreso(): ?DetalleIngreso
     {
         return $this->detalleingreso;
-    }
+    }*/
 
     public function setDetalleIngreso(?DetalleIngreso $detalleingreso): self
     {
         $this->detalleingreso = $detalleingreso;
-
         return $this;
-    }
+    } 
 
     public function getId(): ?int
     {
@@ -178,5 +182,47 @@ class Ingreso
     public function __toString()
     {
         return $this->id;
+    }
+
+
+    /**
+     * Constructor
+    */
+    public function __contstruct()
+    {   
+        $this->detalleingreso = new \Doctrine\Common\Collections\ArrayCollection();
+        //$this->fecha_hora= new \DateTime();
+    }
+
+    /**
+     * Add detalleingreso
+     * 
+     * @param \App\Entity\DetalleIngreso $detalleingreso
+     * @return Ingreso
+     */
+    public function addDetalleIngreso(\App\Entity\DetalleIngreso $detalleingreso)
+    {
+        $this->detalleingreso[]=$detalleingreso;
+        return $this;
+    }
+
+    /**
+     * Remove detalleingreso
+     * 
+     * @param \App\Entity\DetalleIngreso $detalleingreso
+     */
+    public function removeDetalleIngreso(\App\Entity\DetalleIngreso $detalleingreso)
+    {
+        $this->detalleingreso->removeElement($detalleingreso);
+    }
+    
+    /**
+     * Get detalleingreso
+     * 
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDetalleIngreso()
+    {
+        return $this->detalleingreso;
     }
 }

@@ -43,7 +43,7 @@ class Proveedores
     private $telefono_prov;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Ingreso", mappedBy="proveedor")
+     * @ORM\OneToMany(targetEntity="App\Entity\Ingreso", mappedBy="proveedores", cascade={"persist"}))
      */
     private $ingreso;
 
@@ -95,7 +95,7 @@ class Proveedores
 
     public function setCiProv(string $ci_prov): self
     {
-        $this->ciprov = $ci_prov;
+        $this->ci_prov = $ci_prov;
 
         return $this;
     }

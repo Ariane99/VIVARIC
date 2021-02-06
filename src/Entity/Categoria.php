@@ -76,4 +76,5 @@ class Categoria
     {
         return $this->nombreCat;
     }
+
 }

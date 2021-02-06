@@ -6,10 +6,16 @@ namespace App\Controller\Admin;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+
+//////////// REPORTES
+use Dompdf\Dompdf;
+use Dompdf\Options;
 ////////////
 
 use App\Entity\Categoria;
+use App\Form\ArticuloType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
@@ -36,6 +42,14 @@ class CategoriaCrudController extends AbstractCrudController
             ->update(Crud::PAGE_INDEX, Action::DELETE, function (Action $action) {
                  return $action->setIcon('fas fa-eraser')->setLabel(" Eliminar");
             })
+        ;
+    }
+
+    //Configuracion de los 3 puntos
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->showEntityActionsAsDropdown()
         ;
     }
 

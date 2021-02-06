@@ -2,6 +2,12 @@
 
 namespace App\Controller\Admin;
 
+////////////PRUEBA
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+///////////////////
+
 use App\Entity\DetalleIngreso;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -15,6 +21,14 @@ class DetalleIngresoCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return DetalleIngreso::class;
+    }
+
+    //Configuracion de los 3 puntos
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->showEntityActionsAsDropdown()
+        ;
     }
 
     public function configureFields(string $pageName): iterable

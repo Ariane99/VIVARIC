@@ -54,6 +54,7 @@ class DetalleIngreso
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Ingreso", inversedBy="detalleingreso")
+     * @ORM\JoinColumn(name="ingreso_id", referencedColumnName="id")
      */
     private $ingreso;
 
@@ -160,6 +161,6 @@ class DetalleIngreso
 
     public function __toString()
     {
-        return $this->id;
+        return $this->$id;
     }
 }
