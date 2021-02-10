@@ -31,19 +31,16 @@ class DashboardController extends AbstractDashboardController
     {
         //return parent::index();
         $routeBuilder = $this->get(AdminUrlGenerator::class);   
-
         return $this->redirect($routeBuilder->setController(ArticuloCrudController::class)->generateUrl());
     }
 
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('<img src="castilloalv.png" style="width:200px;height:160px;"/><img src="letrasVivaric.png" style="height:70px;"/>')
-            ->setFaviconPath('vivaricLogo.png')
+            ->setTitle('<img src="images/castilloalv.png" style="width:200px;height:160px;"/><img src="images/letrasVivaric.png" style="height:70px;"/>')
+            ->setFaviconPath('images/vivaricLogo.png')
         ;
     }
-
-    
 
     public function configureMenuItems(): iterable
     {

@@ -2,15 +2,29 @@
 
 namespace App\Entity;
 
-use App\Repository\PersonaRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PersonaRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @ORM\Entity(repositoryClass=PersonaRepository::class)
  */
 class Persona implements UserInterface
 {
+
+    /////////////////////////
+
+    /**
+     * Undocumented variable
+     *
+     * @var UserPasswordEncoderInterface
+     */
+    private $passwordEncoder;
+
+    /////////////////////////
+
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -44,9 +58,9 @@ class Persona implements UserInterface
     private $telefono;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="json")
      */
-    private $roles;
+    private $roles=[];
 
     /**
      * @var string The hashed password
@@ -63,6 +77,8 @@ class Persona implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Venta", mappedBy="persona")
      */
     private $venta;
+
+    //////////////////////////////////////////////////////////////////////////////
 
     public function getVenta(): ?Venta
     {
@@ -167,12 +183,16 @@ class Persona implements UserInterface
     /**
      * @see UserInterface
      */
-    public function getRoles(): ?string
-    {
-        return $this->roles;
+    public function getRoles(): array
+    {   
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
-    public function setRoles(string $roles): self
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 
@@ -189,8 +209,7 @@ class Persona implements UserInterface
 
     public function setPassword(string $password): self
     {
-        $this->password = $password;
-
+        $this->password = password_hash( $password, PASSWORD_DEFAULT);
         return $this;
     }
 
@@ -215,4 +234,5 @@ class Persona implements UserInterface
     {
         return $this->nombre;
     }
+
 }

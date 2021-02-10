@@ -4,17 +4,25 @@ namespace App\Controller\Admin;
 
 ////////////PRUEBA
 use App\Entity\Persona;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use App\Form\PersonaType;
+use Symfony\Component\HttpFoundation\Request;
 ////////////
 
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Field\RolField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\PasswordField;
+use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class PersonaCrudController extends AbstractCrudController
 {
@@ -53,12 +61,14 @@ class PersonaCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            //FormField::addPanel('Persona')->setFormType(PersonaType::class),
             TextField::new('nombre','Nombre'),
             EmailField::new('email','Email'),
             TextField::new('ci','Ci'),
+            TelephoneField::new('telefono','Telefono'),
             TextField::new('direccion','Direccion'),
-            TextField::new('roles','Rol'),
-            PasswordField::new('password', 'Contraseña'),
+            ArrayField::new('roles','Rol')->hideOnForm(),
+            PasswordField::new('password', 'Contraseña')->onlyOnForms(),
         ];
         
     }
