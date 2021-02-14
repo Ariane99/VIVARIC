@@ -5,26 +5,13 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PersonaRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+//use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @ORM\Entity(repositoryClass=PersonaRepository::class)
  */
 class Persona implements UserInterface
 {
-
-    /////////////////////////
-
-    /**
-     * Undocumented variable
-     *
-     * @var UserPasswordEncoderInterface
-     */
-    private $passwordEncoder;
-
-    /////////////////////////
-
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -210,7 +197,13 @@ class Persona implements UserInterface
     public function setPassword(string $password): self
     {
         $this->password = password_hash( $password, PASSWORD_DEFAULT);
+        //$this->password = password_hash( $password, PASSWORD_DEFAULT);
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->nombre;
     }
 
     /**
@@ -227,12 +220,7 @@ class Persona implements UserInterface
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
-    }
-
-    public function __toString()
-    {
-        return $this->nombre;
+        //E$this->plainPassword = null;
     }
 
 }

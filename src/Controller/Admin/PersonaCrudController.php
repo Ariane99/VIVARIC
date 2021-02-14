@@ -68,7 +68,7 @@ class PersonaCrudController extends AbstractCrudController
             TelephoneField::new('telefono','Telefono'),
             TextField::new('direccion','Direccion'),
             ArrayField::new('roles','Rol')->hideOnForm(),
-            PasswordField::new('password', 'Contraseña')->onlyOnForms(),
+            PasswordField::new('password', 'Contraseña'),//->onlyOnForms(),
         ];
         
     }
