@@ -52,7 +52,7 @@ class Ingreso
     private $estado;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\DetalleIngreso", mappedBy="ingreso", cascade={"persist"}))
+     * @ORM\OneToMany(targetEntity="App\Entity\DetalleIngreso", mappedBy="ingreso", cascade={"persist"})
      */
     private $detalleingreso;
 
@@ -191,7 +191,6 @@ class Ingreso
     public function __contstruct()
     {   
         $this->detalleingreso = new \Doctrine\Common\Collections\ArrayCollection();
-        //$this->fecha_hora= new \DateTime();
     }
 
     /**

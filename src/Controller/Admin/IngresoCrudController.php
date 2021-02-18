@@ -4,14 +4,12 @@ namespace App\Controller\Admin;
 
 ////////////PRUEBA
 use App\Entity\Ingreso;
-
 use App\Entity\DetalleIngreso;
 use App\Form\DetalleIngresoType;
-
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 ////////////
 
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -56,7 +54,7 @@ class IngresoCrudController extends AbstractCrudController
                 return $action->setIcon('fas fa-eraser')->setLabel(" Eliminar");
             })
 
-            //Actualizamos la funcion con un Icono
+            //ES ESTO BERTS, esta funcion por defectO
             ->update(Crud::PAGE_INDEX, Action::DETAIL, function (Action $action) {
                 return $action->setIcon('fa fa-file-alt')->setLabel(" Ver Detalle");
             })
@@ -68,32 +66,61 @@ class IngresoCrudController extends AbstractCrudController
     {
         return $crud
             ->showEntityActionsAsDropdown()
+            ->setEntityLabelInSingular('Ingreso') //Form
+            ->setEntityLabelInPlural('Ingresos') //Index
         ;
     }
 
     public function configureFields(string $pageName): iterable
     {   
         return [
-            IdField::new('id')->hideOnForm(),
-            FormField::addPanel('Informacion Ingreso'),
-            TextField::new('tipo_comprobante','Tipo Comprobante'),
-            TextField::new('serie_comprobante','Serie de Comprobante'),
-            TextField::new('num_comprobante','N° de Comprobante'),
-            DateTimeField::new('fecha_hora','Fecha y Hora')->setFormat('M/d/yy H:mm'), //formato para vista
-            NumberField::new('impuesto'),
-            TextField::new('estado','Estado'),
-            AssociationField::new('persona','Persona'),
-            AssociationField::new('proveedores','Proveedor'),
-            FormField::addPanel('Detalle Ingreso'),
+            IdField::new('id')
+                ->hideOnForm()
+                ->setTextAlign('center')
+            ,
+            FormField::addPanel('Informacion Ingreso')
+                ->setTextAlign('center')
+            ,
+            TextField::new('tipo_comprobante','Tipo Comprobante')
+                ->setTextAlign('center')
+            ,
+            TextField::new('serie_comprobante','Serie de Comprobante')
+                ->setTextAlign('center')
+            ,
+            TextField::new('num_comprobante','N° de Comprobante')
+                ->setTextAlign('center')
+            ,
+            DateTimeField::new('fecha_hora','Fecha y Hora')
+                ->setFormat('M/d/yy H:mm')//formato para vista
+                ->setTextAlign('center')
+            , 
+            NumberField::new('impuesto')
+                ->setTextAlign('center')
+            ,
+            TextField::new('estado','Estado')
+                ->setTextAlign('center')
+            ,
+            AssociationField::new('persona','Persona')
+                ->setTextAlign('center')
+            ,
+            AssociationField::new('proveedores','Proveedor')
+                ->setTextAlign('center')
+            ,
+            FormField::addPanel('Detalle Ingreso')
+                ->setTextAlign('center')
+            ,
             
-            CollectionField::new('detalleingreso', 'Detalle')->hideOnIndex()
-            ->allowAdd() 
-            ->allowDelete()
-            ->setEntryIsComplex(true)
-            ->setEntryType(DetalleIngresoType::class)
-            ->setFormTypeOptions([
-                'by_reference' => 'false'
-            ]),
+            CollectionField::new('detalleingreso', 'Detalle')
+                ->setTextAlign('center')
+                ->hideOnIndex()
+                ->allowAdd() 
+                ->allowDelete()
+                ->setEntryIsComplex(true)
+                ->setEntryType(DetalleIngresoType::class)
+                ->setFormTypeOptions([
+                    'by_reference' => 'false'
+                ])
+            ,
         ];
     }
 }

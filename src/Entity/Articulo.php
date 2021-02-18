@@ -53,7 +53,7 @@ class Articulo
     private $categoria;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\DetalleIngreso", mappedBy="articulo")
+     * @ORM\OneToMany(targetEntity="App\Entity\DetalleIngreso", mappedBy="articulo", cascade={"persist"}))
      */
     private $detalleingreso;
 

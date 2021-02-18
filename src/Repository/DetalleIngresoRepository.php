@@ -2,9 +2,11 @@
 
 namespace App\Repository;
 
+use App\Entity\Ingreso;
 use App\Entity\DetalleIngreso;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method DetalleIngreso|null find($id, $lockMode = null, $lockVersion = null)

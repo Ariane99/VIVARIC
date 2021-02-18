@@ -27,16 +27,26 @@ class DetalleVentaCrudController extends AbstractCrudController
     {
         return $crud
             ->showEntityActionsAsDropdown()
+            ->setEntityLabelInSingular('Detalle de Venta') //Form
+            ->setEntityLabelInPlural('Detalles de Venta') //Index
         ;
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            NumberField::new('precio_venta','Precio de Venta'),
-            IntegerField::new('cantidad'),
-            AssociationField::new('venta'),
-            AssociationField::new('articulo'),
+            NumberField::new('precio_venta','Precio de Venta')
+                ->setTextAlign('center')
+            ,
+            IntegerField::new('cantidad')
+                ->setTextAlign('center')
+            ,
+            AssociationField::new('venta')
+                ->setTextAlign('center')
+            ,
+            AssociationField::new('articulo')
+                ->setTextAlign('center')
+            ,
         ];
     }
 }

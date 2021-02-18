@@ -45,17 +45,29 @@ class ProveedoresCrudController extends AbstractCrudController
     {
         return $crud
             ->showEntityActionsAsDropdown()
+            ->setEntityLabelInSingular('Proveedor') //Form
+            ->setEntityLabelInPlural('Proveedores') //Index
         ;
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('nombre_prov', 'Nombre Proveedor'),
-            EmailField::new('email_prov', 'Email'),
-            NumberField::new('ci_prov', 'Ci'),
-            TextField::new('direccion_prov','Direccion'),
-            TextField::new('telefono_prov', 'Telefono'),
+            TextField::new('nombre_prov', 'Nombre Proveedor')
+                ->setTextAlign('center')
+            ,
+            EmailField::new('email_prov', 'Email')
+                ->setTextAlign('center')
+            ,
+            NumberField::new('ci_prov', 'Ci')
+                ->setTextAlign('center')
+            ,
+            TextField::new('direccion_prov','Direccion')
+                ->setTextAlign('center')
+            ,
+            TextField::new('telefono_prov', 'Telefono')
+            ->setTextAlign('center')
+            ,
         ];
     }
 }

@@ -13,7 +13,6 @@ use Dompdf\Options;
 ////////////
 
 use App\Entity\Categoria;
-use App\Form\ArticuloType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -50,14 +49,21 @@ class CategoriaCrudController extends AbstractCrudController
     {
         return $crud
             ->showEntityActionsAsDropdown()
+            ->setEntityLabelInSingular('Categoria') //Form
+            ->setEntityLabelInPlural('Categorias') //Index
+
         ;
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('nombreCat','Nombre del Articulo'),
-            TextEditorField::new('descripcion','Descripcion del Articulo'),
+            TextField::new('nombreCat','Categoria')    
+                ->setTextAlign('center')
+            ,
+            TextEditorField::new('descripcion','Descripcion')
+                ->setTextAlign('center')
+            ,
         ];
     }
 }

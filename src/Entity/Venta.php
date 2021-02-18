@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\VentaRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity(repositoryClass=VentaRepository::class)
  */
@@ -30,7 +32,7 @@ class Venta
     /**
      * @ORM\Column(type="string", length=20)
      */
-    private $ciudad;
+    private $ciudad; 
 
     /**
      * @ORM\Column(type="string", length=20)
@@ -73,26 +75,16 @@ class Venta
     private $persona;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\DetalleVenta", mappedBy="venta")
+     * @ORM\OneToMany(targetEntity="App\Entity\DetalleVenta", mappedBy="venta", cascade={"persist"})
      */
     private $detalleventa;
 
-    public function getDetalleVenta(): ?DetalleVenta
-    {
-        return $this->detalleventa;
-    }
-
-    public function setDetalleVenta(?DetalleVenta $detalleventa): self
-    {
-        $this->detalleventa = $detalleventa;
-
-        return $this;
-    }
-
     public function getPersona(): ?Persona
     {
+
         return $this->persona;
     }
+
 
     public function setPersona(?Persona $persona): self
     {
@@ -230,4 +222,55 @@ class Venta
     {
         return $this->id;
     }
+
+    /**
+     * Constructor
+     */
+    public function __contruct()
+    {
+        $this->detalleventa = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add detalleventa
+     * @param \App\Entity\DetalleVenta $detalleventa
+     * @return Venta
+     */
+    public function addDetalleVenta(\App\Entity\DetalleVenta $detalleventa)
+    {
+        $this->detalleventa[] = $detalleventa;
+        return $this;
+    }
+
+
+    /**
+     * Remove detalleventa
+     * @param \App\Entity\DetalleVenta $detalleventa
+     */
+    public function removeDetalleVenta(\App\Entity\DetalleVenta $detalleventa)
+    {
+        $this->detalleventa->removeElement($detalleventa);
+    }
+
+    /**
+     * Get detalleventa
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDetalleVenta()
+    {
+        return  $this->detalleventa;
+
+    }
+    
+    public function setDetalleVenta(?array $detalleventa): self
+    {
+        $this->detalleventa = $detalleventa;
+
+        return $this;
+    }
+
+
+   
+
+
 }

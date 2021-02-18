@@ -51,20 +51,35 @@ class ArticuloCrudController extends AbstractCrudController
     {
         return $crud
             ->showEntityActionsAsDropdown()
+            ->setEntityLabelInSingular('Articulo') //Form
+            ->setEntityLabelInPlural('Articulos') //Index
         ;
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('nombreArt','Nombre del Articulo'),
-            TextEditorField::new('detalle'),
-            TextField::new('modelo'),            
-            TextField::new('color'),            
-            //ColorField::new('color'),
-            TextField::new('dimension'),
-            IntegerField::new('stock'),
+            TextField::new('nombreArt','Nombre del Articulo')
+                ->setTextAlign('center')
+            ,
+            TextEditorField::new('detalle')
+                ->setTextAlign('center')
+            ,
+            TextField::new('modelo')
+                ->setTextAlign('center')
+            ,            
+            TextField::new('color')
+                ->setTextAlign('center')
+            ,            
+            TextField::new('dimension')
+                ->setTextAlign('center')
+            ,
+            IntegerField::new('stock')
+                ->setTextAlign('center')
+            ,
             AssociationField::new('categoria')
+                ->setTextAlign('center')
+            ,
         ];
     }
 

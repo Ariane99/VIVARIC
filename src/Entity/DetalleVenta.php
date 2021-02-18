@@ -29,6 +29,7 @@ class DetalleVenta
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Venta", inversedBy="detalleventa")
+     * @ORM\JoinColumn(name="venta_id", referencedColumnName="id")
      */
     private $venta;
 
@@ -49,7 +50,7 @@ class DetalleVenta
         return $this;
     }
 
-    public function getVenta(): ?Venta
+  /*  public function getVenta(): ?Venta
     {
         return $this->venta;
     }
@@ -60,6 +61,7 @@ class DetalleVenta
 
         return $this;
     }
+*/
 
     public function getId(): ?int
     {
@@ -93,5 +95,26 @@ class DetalleVenta
     public function __toString()
     {
         return $this->id;
+    }
+
+    /**
+     * Set venta
+     * @param \App\Entity\Venta $venta
+     * @return Venta
+     */
+    public function setVenta(\App\Entity\Venta $venta = null)
+    {
+        $this->venta = $venta;
+
+        return $this;
+    }
+
+    /**
+     * Get venta
+     * @return \App\Entity\Venta
+     */
+    public function getVenta()
+    {
+        return $this->venta;
     }
 }

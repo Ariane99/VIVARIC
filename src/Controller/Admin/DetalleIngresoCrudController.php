@@ -28,20 +28,38 @@ class DetalleIngresoCrudController extends AbstractCrudController
     {
         return $crud
             ->showEntityActionsAsDropdown()
+            ->setEntityLabelInSingular('Detalle de Ingreso') //Form
+            ->setEntityLabelInPlural('Detalles de Ingreso') //Index
         ;
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            IntegerField::new('cantidad'),
-            NumberField::new('precioven_mayor','Precio por Mayor'),
-            NumberField::new('precioven_minimo_mayor','Precio (Min) por Mayor'),
-            NumberField::new('precioven_menor','Precio por Menor'),
-            NumberField::new('precioven_minimo_menor','Precio (Min) por Menor'),
-            NumberField::new('precio_compra','Precio de Compra'),
-            AssociationField::new('articulo'),
-            AssociationField::new('ingreso'),
+            IntegerField::new('cantidad')
+                ->setTextAlign('center')
+            ,
+            NumberField::new('precioven_mayor','Precio por Mayor')
+                ->setTextAlign('center')
+            ,
+            NumberField::new('precioven_minimo_mayor','Precio (Min) por Mayor')
+                ->setTextAlign('center')
+            ,
+            NumberField::new('precioven_menor','Precio por Menor')
+                ->setTextAlign('center')
+            ,
+            NumberField::new('precioven_minimo_menor','Precio (Min) por Menor')
+                ->setTextAlign('center')
+            ,
+            NumberField::new('precio_compra','Precio de Compra')
+                ->setTextAlign('center')
+            ,
+            AssociationField::new('articulo')
+                ->setTextAlign('center')
+            ,
+            AssociationField::new('ingreso')
+                ->setTextAlign('center')
+            ,
         ];
     }
 }

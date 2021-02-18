@@ -55,6 +55,8 @@ class PersonaCrudController extends AbstractCrudController
     {
         return $crud
             ->showEntityActionsAsDropdown()
+            ->setEntityLabelInSingular('Persona') //Form
+            ->setEntityLabelInPlural('Persona/Usuario') //Index
         ;
     }
 
@@ -62,14 +64,28 @@ class PersonaCrudController extends AbstractCrudController
     {
         return [
             //FormField::addPanel('Persona')->setFormType(PersonaType::class),
-            TextField::new('nombre','Nombre'),
-            EmailField::new('email','Email'),
-            TextField::new('ci','Ci'),
-            TelephoneField::new('telefono','Telefono'),
-            TextField::new('direccion','Direccion'),
-            ArrayField::new('roles','Rol')->hideOnForm(),
-            PasswordField::new('password', 'Contraseña'),//->onlyOnForms(),
+            TextField::new('nombre','Nombre')
+                ->setTextAlign('center')
+            ,
+            EmailField::new('email','Email')
+                ->setTextAlign('center')
+            ,
+            TextField::new('ci','Ci')
+                ->setTextAlign('center')
+            ,
+            TelephoneField::new('telefono','Telefono')
+                ->setTextAlign('center')
+            ,
+            TextField::new('direccion','Direccion')
+                ->setTextAlign('center')
+            ,
+            ArrayField::new('roles','Rol')
+                ->hideOnForm()
+                ->setTextAlign('center')
+            ,
+            PasswordField::new('password', 'Contraseña')
+                ->setTextAlign('center')
+            ,//->onlyOnForms(),
         ];
-        
     }
 }
