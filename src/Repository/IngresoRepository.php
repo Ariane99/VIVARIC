@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Ingreso;
+use App\Entity\DetalleIngreso;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -17,6 +18,25 @@ class IngresoRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Ingreso::class);
+    }
+
+    public function lista()
+    {
+        return $this->getEntityManager()
+        ->createQuery('
+            SELECT i
+            From App:Ingreso i
+        ')->getResult();
+    }
+
+    public function listafecha(string $fi, string $ff)
+    {
+        return $this->getEntityManager()
+        ->createQuery('
+            SELECT i
+            From App:Ingreso i
+            WHERE i.fecha_hora between :fi and :ff
+        ')->setParameter('fi', $fi)->setParameter('ff', $ff)->getResult();
     }
 
     // /**

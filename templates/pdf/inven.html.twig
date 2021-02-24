@@ -1,0 +1,145 @@
+{% extends 'basepdf.html.twig' %}
+
+{% block title %}
+{{parent()}} Categoria
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+
+    img{
+		width: 175px;
+	}
+
+    table {
+        width: 100%;
+        font-family:arial;
+        font-size:12px;
+        border-collapse: collapse;
+    }    
+
+    th {
+		padding: 5px;
+		font-family:arial;
+		text-align: center;
+		border: 1px solid #000000;
+		height: 25px;
+		background-color: #5dc1b9;
+		color: white;
+		font-size:18px;
+	}
+
+    td {
+        width: 100%;
+		padding: 2px;
+		font-family:arial;
+        font-size:15px;
+		border: 1px solid #000000;
+		height: 25px;
+	}
+
+    h1 {
+		text-align: center;
+	}
+    
+	footer {      
+        opacity: 0;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+        font-size:12px;
+    }
+
+	.pagenum:before {
+		font-family: arial;
+        color: #000000;
+        content: counter(page);
+    }
+
+</style>
+{% endblock %}
+
+
+{% block body %}
+    
+        <label style="float:right;"> Fecha de impresion: {{ fechas|date('d-m-Y') }} </label>
+
+        <head>
+            <img src="http://localhost/Vivaric/public/images/castilloalv.png">
+        </head>
+        
+        <body> 
+            {% if ingven == "ingreso" %}
+                <h1>Reporte de Ingresos</h1>
+                <br>
+                <label> Desde: {{ f_inicio|date('d-m-Y') }} </label>
+                <label> Hasta {{ f_fin|date('d-m-Y') }} </label>
+                <div>
+                    <table>
+                        <tr>
+                            <th># Comprobante</th>
+                            <th>Serie Comprobante</th>
+                            <th>Tipo Comprobante</th>
+                            <th>Fecha</th>
+                            <th>Impuestos</th>
+                            <th>Estado</th>
+                            <th>Persona</th>
+                            <th>Proveedor</th>
+                        </tr>
+                        {% for v in var %}
+                        <tr>
+                            <td> {{ v.numcomprobante }} </td> 
+                            <td> {{ v.seriecomprobante }} </td> 
+                            <td> {{ v.tipocomprobante }} </td> 
+                            <td> {{ v.fechahora|date('d-m-Y') }} </td>  
+                            <td> {{ v.impuesto }} </td>  
+                            <td> {{ v.estado }} </td>  
+                            <td> {{ v.persona }} </td>  
+                            <td> {{ v.proveedores }} </td>   
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>  
+            {% else %}
+                <h1>Reporte de Ventas</h1>
+                <br>
+                <label> Desde: {{ f_inicio|date('d-m-Y') }} </label>
+                <label> Hasta {{ f_fin|date('d-m-Y') }} </label>
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="3">Comprobante</th>
+                                <th rowspan="2" >Cliente</th>
+                                <th rowspan="2" >Ciudad</th>
+                                <th rowspan="2" >Fecha</th>
+                                <th rowspan="2" >Estado</th>
+                                <th rowspan="2" >Total Venta</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Serie</th>
+                            <th>Tipo</th>
+                        </tr>
+                        {% for v in var %}
+                        <tr>
+                            <td colspan="3"> {{ v.numcomprobante }} - {{ v.seriecomprobante }} - {{ v.seriecomprobante }}</td>
+                            <td> {{ v.cicliente }} - {{ v.nombrecliente }}</td> 
+                            <td> {{ v.ciudad }} </td> 
+                            <td> {{ v.fechahora|date('d-m-Y') }} </td>  
+                            <td> {{ v.estado }} </td>  
+                            <td> {{ v.totalventa }} </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>  
+            {% endif %}
+        </body>
+    
+        <footer>
+            <span class="pagenum"></span>
+        </footer>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends 'basepdf.html.twig' %}
+
+{% block title %}
+{{parent()}} Categoria
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+
+    img{
+		width: 175px;
+	}
+
+    table {
+        width: 100%;
+        font-family:arial;
+        font-size:12px;
+        border-collapse: collapse;
+    }    
+
+    th {
+		padding: 5px;
+		font-family:arial;
+		text-align: center;
+		border: 1px solid #000000;
+		height: 25px;
+		background-color: #5dc1b9;
+		color: white;
+		font-size:18px;
+	}
+
+    td {
+        width: 100%;
+		padding: 2px;
+		font-family:arial;
+        font-size:15px;
+		border: 1px solid #000000;
+		height: 25px;
+	}
+
+    h1 {
+		text-align: center;
+	}
+    
+	footer {      
+        opacity: 0;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+        font-size:12px;
+    }
+
+	.pagenum:before {
+		font-family: arial;
+        color: #000000;
+        content: counter(page);
+    }
+
+</style>
+{% endblock %}
+
+
+{% block body %}
+
+    <label style="float:right;"> Fecha de impresion: {{ fechas|date('d-m-Y') }} </label>
+
+    <head>
+        <img src="http://localhost/Vivaric/public/images/castilloalv.png">
+    </head>
+
+    <body> 
+        <h1>Reporte de Personal</h1>
+        <br>
+        <div>
+            <table>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>CI</th>
+                    <th>Direccion</th>
+                    <th>Telefono</th>
+                </tr>
+                {% for p in personas %}
+                <tr>
+                    <td> {{ p.nombre }} </td>
+                    <td> {{ p.email }} </td>     
+                    <td> {{ p.ci }} </td> 
+                    <td> {{ p.direccion }} </td> 
+                    <td> {{ p.telefono }} </td> 
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </body>
+    <footer>
+        <span class="pagenum"></span>
+    </footer>
+{% endblock %}

@@ -19,6 +19,41 @@ class CategoriaRepository extends ServiceEntityRepository
         parent::__construct($registry, Categoria::class);
     }
 
+    public function lista()
+    {
+        return $this->getEntityManager()
+            ->createQuery('
+                SELECT  c
+                From App:Categoria c
+            ')->getResult();
+    }
+
+/*     public function pruebatodos(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT * FROM categoria
+            ';
+        $stmt = $conn->prepare($sql);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAllAssociative();
+    } */
+    
+ /*     public function pruebatodos(): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT c 
+            FROM App\Entity\Categoria c'
+        );
+
+        // returns an array of Product objects
+        return $query->getResult();
+    } */
+
     // /**
     //  * @return Categoria[] Returns an array of Categoria objects
     //  */

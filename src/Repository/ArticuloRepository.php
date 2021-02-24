@@ -19,6 +19,15 @@ class ArticuloRepository extends ServiceEntityRepository
         parent::__construct($registry, Articulo::class);
     }
 
+    public function lista()
+    {
+        return $this->getEntityManager()
+            ->createQuery('
+                SELECT  a
+                From App:Articulo a
+            ')->getResult();
+    }
+
     // /**
     //  * @return Articulo[] Returns an array of Articulo objects
     //  */

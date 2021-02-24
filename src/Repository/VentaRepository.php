@@ -19,6 +19,25 @@ class VentaRepository extends ServiceEntityRepository
         parent::__construct($registry, Venta::class);
     }
 
+    public function lista()
+    {
+        return $this->getEntityManager()
+        ->createQuery('
+            SELECT v
+            From App:Venta v
+        ')->getResult();
+    }
+
+    public function listafecha(string $fi, string $ff)
+    {
+        return $this->getEntityManager()
+        ->createQuery('
+            SELECT i
+            From App:Venta i
+            WHERE i.fecha_hora between :fi and :ff
+        ')->setParameter('fi', $fi)->setParameter('ff', $ff)->getResult();
+    }
+
     // /**
     //  * @return Venta[] Returns an array of Venta objects
     //  */

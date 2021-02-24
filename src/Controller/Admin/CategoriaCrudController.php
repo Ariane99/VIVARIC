@@ -3,17 +3,18 @@
 namespace App\Controller\Admin;
 
 ////////////PRUEBA
-use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-
-//////////// REPORTES
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use App\Entity\Categoria;
+
+//////////// REPORTES
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 ////////////
 
-use App\Entity\Categoria;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -61,7 +62,7 @@ class CategoriaCrudController extends AbstractCrudController
             TextField::new('nombreCat','Categoria')    
                 ->setTextAlign('center')
             ,
-            TextEditorField::new('descripcion','Descripcion')
+            TextareaField::new('descripcion','Descripcion')
                 ->setTextAlign('center')
             ,
         ];

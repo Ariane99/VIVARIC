@@ -37,7 +37,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('<img src="images/castilloalv.png" style="width:200px;height:160px;"/><img src="images/letrasVivaric.png" style="height:70px;"/>')
+           // ->setTitle('<img src="images/castilloalv.png" style="width:190px;height:150px;"/>')
             ->setFaviconPath('images/vivaricLogo.png')
         ;
     }
@@ -54,6 +54,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Detalle Venta', 'fas fa-cart-plus', DetalleVenta::class);        
         yield MenuItem::linkToCrud('Persona', 'fas fa-users', Persona::class);       
         yield MenuItem::linkToCrud('Proveedor', 'fas fa-parachute-box', Proveedores::class); 
+        //REPORTES
+        yield MenuItem::linktoRoute('Reportes', 'fas fa-file-alt','pdf'); 
     }
 
     //CSS PERSONALIZADO

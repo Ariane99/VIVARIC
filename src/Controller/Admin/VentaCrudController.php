@@ -118,7 +118,7 @@ class VentaCrudController extends AbstractCrudController
 
             CollectionField::new('detalleventa', 'Detalle')
                 ->setTextAlign('center')
-                ->hideOnIndex()
+                //->hideOnIndex()
                 ->allowAdd() 
                 ->allowDelete()
                 ->setEntryIsComplex(true)

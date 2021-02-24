@@ -22,6 +22,15 @@ class PersonaRepository extends ServiceEntityRepository // implements PasswordUp
         parent::__construct($registry, Persona::class);
     }
 
+    public function lista()
+    {
+        return $this->getEntityManager()
+            ->createQuery('
+                SELECT  p
+                From App:Persona p
+            ')->getResult();
+    }
+
     //   /**
     //    * Used to upgrade (rehash) the user's password automatically over time.
     //    */

@@ -19,6 +19,15 @@ class ProveedoresRepository extends ServiceEntityRepository
         parent::__construct($registry, Proveedores::class);
     }
 
+    public function lista()
+    {
+        return $this->getEntityManager()
+            ->createQuery('
+                SELECT  p
+                From App:Proveedores p
+            ')->getResult();
+    }
+
     // /**
     //  * @return Proveedores[] Returns an array of Proveedores objects
     //  */
