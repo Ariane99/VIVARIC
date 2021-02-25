@@ -42,6 +42,7 @@ security:
     
     access_control: #Se pueden agregar limitaciones, symfony lee hasta que encuentra una coincidencia
             - { path: ^/admin, roles: ROLE_USER }
+            - { path: ^/user, roles: [ROLE_USER, ROLE_ADMIN] }
             # - { path: ^/profile, roles: ROLE_USER }
             # - { path: '^/admin', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
         

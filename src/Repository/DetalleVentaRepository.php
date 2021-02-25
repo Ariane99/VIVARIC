@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\DetalleVenta;
+use App\Entity\Articulo;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

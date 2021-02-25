@@ -28,6 +28,18 @@ class ArticuloRepository extends ServiceEntityRepository
             ')->getResult();
     }
 
+    public function masventa()
+    {
+        return $this->getEntityManager()
+        ->createQuery('
+            Select a
+            from App:Articulo a
+            JOIN a.detalleventa d WITH a.id = d.articulo
+            ORDER BY a.stock ASC
+        ')->getResult();
+    }
+
+
     // /**
     //  * @return Articulo[] Returns an array of Articulo objects
     //  */

@@ -6,6 +6,7 @@ use App\Entity\Ingreso;
 use App\Entity\DetalleIngreso;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @method Ingreso|null find($id, $lockMode = null, $lockVersion = null)
@@ -29,6 +30,26 @@ class IngresoRepository extends ServiceEntityRepository
         ')->getResult();
     }
 
+    public function listamen()
+    {
+        return $this->getEntityManager()
+        ->createQuery('
+            SELECT i
+            From App:Ingreso i
+            WHERE Month(i.fecha_hora) = Month(:today)
+        ')->setParameter('today', new \DateTime())->getResult();
+    }
+
+    public function listasem()
+    {
+        return $this->getEntityManager()
+        ->createQuery('
+            SELECT i
+            From App:Ingreso i
+            WHERE i.fecha_hora between :td and :today
+        ')->setParameter('today', new \DateTime())->setParameter('td', new \DateTime('-15 days'))->getResult();
+    }
+     
     public function listafecha(string $fi, string $ff)
     {
         return $this->getEntityManager()

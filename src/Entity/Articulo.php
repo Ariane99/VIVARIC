@@ -57,6 +57,13 @@ class Articulo
      */
     private $detalleingreso;
 
+
+    
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\DetalleVenta", mappedBy="articulo", cascade={"persist"}))
+     */
+    private $detalleventa;
+
     public function getDetalleIngreso(): ?DetalleIngreso
     {
         return $this->detalleingreso;
@@ -68,7 +75,17 @@ class Articulo
 
         return $this;
     }
+    public function getDetalleVenta(): ?DetalleVenta
+    {
+        return $this->detalleventa;
+    }
 
+    public function setDetalleVenta(?DetalleVenta $detalleventa): self
+    {
+        $this->detalleventa = $detalleventa;
+
+        return $this;
+    }
     public function getCategoria(): ?Categoria
     {
         return $this->categoria;

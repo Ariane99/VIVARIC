@@ -81,8 +81,9 @@ class IngresoCrudController extends AbstractCrudController
             FormField::addPanel('Informacion Ingreso')
                 ->setTextAlign('center')
             ,
-            TextField::new('tipo_comprobante','Tipo Comprobante')
+            ChoiceField::new('tipo_comprobante','Tipo de Comprobante')
                 ->setTextAlign('center')
+                ->setChoices(array('Factura'=>'Factura', 'Boleta'=>'Boleta'))
             ,
             TextField::new('serie_comprobante','Serie de Comprobante')
                 ->setTextAlign('center')
@@ -97,9 +98,10 @@ class IngresoCrudController extends AbstractCrudController
             NumberField::new('impuesto')
                 ->setTextAlign('center')
             ,
-            TextField::new('estado','Estado')
-                ->setTextAlign('center')
-            ,
+            ChoiceField::new('estado','Estado')
+            ->setTextAlign('center')
+            ->setChoices(array('Cancelado'=>'Cancelado', 'Pendiente'=>'Pendiente'))
+        ,
             AssociationField::new('persona','Persona')
                 ->setTextAlign('center')
             ,

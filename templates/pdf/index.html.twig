@@ -20,83 +20,106 @@
 
   </style>
 <div class="container-fluid">
-<div class="card-group mb-2">
-  <div class="card text-center mr-2">
-    <div class="card-body">
-      <i class="fas fa-tags" style="font-size: 30px;"></i>
-      <h5 class="card-title" style="font-size: 19px;">Reporte de Categorias</h5> 
-      <a class="btn btn-primary" style="font-size: 14px;" href="{{ path('pdf_categoria') }}"><b>GENERAR</b></a>
+  <div class="card-group mb-2">
+    <div class="card text-center mr-2">
+      <div class="card-body">
+        <i class="fas fa-tags" style="font-size: 30px;"></i>
+        <h5 class="card-title" style="font-size: 19px;">Reporte de Categorias</h5>
+        <a class="btn btn-primary" style="font-size: 14px;" href="{{ path('pdf_categoria') }}"><b>GENERAR</b></a>
+      </div>
+    </div>
+    <div class="card text-center ml-2 mr-2">
+      <div class="card-body">
+        <i class="fas fa-boxes" style="font-size: 30px;"></i> 
+        <h5 class="card-title" style="font-size: 19px;">Reporte de Articulos</h5> 
+        <a class="btn btn-primary" style="font-size: 14px;" href="{{ path('pdf_articulo') }}"><b>GENERAR</b></a>
+      </div>
+    </div>
+    <div class="card text-center ml-2 mr-2">
+      <div class="card-body">
+        <i class="fas fa-parachute-box" style="font-size: 30px;"></i>
+        <h5 class="card-title" style="font-size: 19px;">Reporte de Proveedores</h5>
+        <a class="btn btn-primary" style="font-size: 14px;" href="{{ path('pdf_proveedor') }}"><b>GENERAR</b></a>
+      </div>
+    </div>
+    <div class="card text-center ml-2 mr-2">
+      <div class="card-body">
+        <i class="fas fa-users" style="font-size: 30px;"></i>
+        <h5 class="card-title" style="font-size: 19px;">Reporte de Usuarios</h5>
+        <a class="btn btn-primary" style="font-size: 14px;" href="{{ path('pdf_usuario') }}"><b>GENERAR</b></a>
+      </div>
+    </div>
+    <div class="card text-center ml-2 mr-2">
+      <div class="card-body">
+        <i class="fas fa-user-clock" style="font-size: 30px;"></i>
+        <h5 class="card-title" style="font-size: 19px;">Clientes Frecuentes</h5>
+        <a class="btn btn-primary" style="font-size: 14px;" href="{{ path('pdf_cliente') }}"><b>GENERAR</b></a>
+      </div>
+    </div>
+    <div class="card text-center ml-2">
+      <div class="card-body">
+        <i class="fas fa-box-open" style="font-size: 30px;"></i>
+        <h5 class="card-title" style="font-size: 19px;">Articulos mas Vendidos</h5>
+        <a class="btn btn-primary" style="font-size: 14px;" href="{{ path('pdf_masventa') }}"><b>GENERAR</b></a>
+      </div>
     </div>
   </div>
-  <div class="card text-center ml-2 mr-2">
-    <div class="card-body">
-      <i class="fas fa-boxes" style="font-size: 30px;"></i> 
-      <h5 class="card-title" style="font-size: 19px;">Reporte de Articulos</h5> 
-      <a class="btn btn-primary" style="font-size: 14px;" href="{{ path('pdf_articulo') }}"><b>GENERAR</b></a>
-    </div>
-  </div>
-  <div class="card text-center ml-2 mr-2">
-    <div class="card-body">
-      <i class="fas fa-parachute-box" style="font-size: 30px;"></i>
-      <h5 class="card-title" style="font-size: 19px;">Reporte de Proveedores</h5>
-      <a class="btn btn-primary" style="font-size: 14px;" href="{{ path('pdf_proveedor') }}"><b>GENERAR</b></a>
-    </div>
-  </div>
-  <div class="card text-center ml-2">
-    <div class="card-body">
-      <i class="fas fa-users" style="font-size: 30px;"></i>
-      <h5 class="card-title" style="font-size: 19px;">Reporte de Usuarios</h5>
-      <a class="btn btn-primary" style="font-size: 14px;" href="{{ path('pdf_usuario') }}"><b>GENERAR</b></a>
-    </div>
-  </div>
-</div>
-<div class="card-group mb-2">
-  <div class="card text-center mr-2">
-    <div class="card-body">
-      <i class="fas fa-people-carry" style="font-size: 30px;"></i>
-      <h5 class="card-title" style="font-size: 19px;">Reporte de Ingresos</h5>
-      <a class="btn btn-primary" style="font-size: 14px;" href="{{ path('pdf_ingreso') }}"><b>GENERAR</b></a>
-    </div>
-  </div>
-  <div class="card text-center ml-2">
-    <div class="card-body">
-      <i class="fas fa-store" style="font-size: 30px;"></i>
-      <h5 class="card-title" style="font-size: 19px;">Reporte de Ventas</h5>
-      <a class="btn btn-primary" style="font-size: 14px;" href="{{ path('pdf_venta') }}"><b>GENERAR</b></a>
-    </div>
-  </div>
-</div>
-
-  <div class="row">
-      <div class="col">
-        <div class="card text-center" style="display: flex; align-items: center;">
-          <div class="card-body">
-            <h2>Reportes con Rangos</h2>
-              <form class="form-group" action="{{ path('pdf_igven') }}" method="get" class="text-center">
-                <div class="row align-items-center">
-                  <div class="col align-items-center">
-                    <h6>Reporte:</h6>
-                    <select name="ingven" class="custom-select" style="width: fit-content;">
-                      <option value="ingreso">Ingresos</option>
-                      <option value="salida">Salidas</option>
-                    </select>
-                  </div>
-                  <div class="col">
-                    <h6>Desde:</h6>
-                    <input type="date" name="f_inicio" class="form-control">
-                  </div>
-                  <div class="col">
-                    <h6>Hasta:</h6>
-                    <input type="date" name="f_fin" class="form-control">
-                  </div>
-                  <div class="col">
-                    <button class="btn btn-primary" type="submit"><b>GENERAR</b></button>
-                  </div>
-                </div>
-              </form>
-          </div>
+  <div class="card-group mb-2">
+    <div class="card text-center mr-2">
+      <div class="card-body">
+        <i class="fas fa-people-carry" style="font-size: 30px;"></i>
+        <h5 class="card-title" style="font-size: 19px;">Reporte de Ingresos</h5>
+        <a class="btn btn-primary" style="font-size: 14px;" href="{{ path('pdf_ingreso') }}"><b>GENERAL </b></a>
+        <p class="mt-2">Otras Opciones:</p>
+        <div class="btn-group col" role="group">
+          <a class="btn btn-info col ml-2" style="font-size: 14px;" href="{{ path('pdf_ingresosem') }}"><b>QUINCENAL</b></a>
+          <a class="btn btn-info col ml-2" style="font-size: 14px;" href="{{ path('pdf_ingresomen') }}"><b>MENSUAL</b></a>
         </div>
       </div>
+    </div>
+    <div class="card text-center ml-2">
+      <div class="card-body">
+        <i class="fas fa-store" style="font-size: 30px;"></i>
+        <h5 class="card-title" style="font-size: 19px;">Reporte de Ventas</h5>
+        <a class="btn btn-primary" style="font-size: 14px;" href="{{ path('pdf_venta') }}"><b>GENERAL</b></a>
+        <p class="mt-2">Otras Opciones:</p>
+        <div class="btn-group col" role="group">
+          <a class="btn btn-info col ml-2" style="font-size: 14px;" href="{{ path('pdf_ventasem') }}"><b>QUINCENAL</b></a>
+          <a class="btn btn-info col ml-2" style="font-size: 14px;" href="{{ path('pdf_ventamen') }}"><b>MENSUAL</b></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card text-center" style="display: flex; align-items: center;">
+        <div class="card-body">
+          <h2 class="card-title">Reportes con Rangos</h2>
+            <form class="form-group" action="{{ path('pdf_igven') }}" method="get" class="text-center">
+                  <div class="row align-items-center">
+                    <div class="col align-items-center">
+                      <h6>Reporte:</h6>
+                      <select name="ingven" class="custom-select" style="width: fit-content;">
+                        <option value="ingreso">Ingresos</option>
+                        <option value="salida">Salidas</option>
+                      </select>
+                    </div>
+                    <div class="col">
+                      <h6>Desde:</h6>
+                      <input type="date" name="f_inicio" class="form-control">
+                    </div>
+                    <div class="col">
+                      <h6>Hasta:</h6>
+                      <input type="date" name="f_fin" class="form-control">
+                    </div>
+                    <div class="col">
+                      <button class="btn btn-primary" type="submit"><b>GENERAR</b></button>
+                    </div>
+                  </div>
+            </form>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

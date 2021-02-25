@@ -1,7 +1,7 @@
 {% extends 'basepdf.html.twig' %}
 
 {% block title %}
-{{parent()}} Proveedores
+{{parent()}} Mas Vendidos
 {% endblock %}
 
 {% block stylesheets %}
@@ -71,24 +71,28 @@
     </head>
 
     <body> 
-        <h1>Reporte de Proveedores</h1>
+        <h1>Articulos mas Vendidos</h1>
         <br>
         <div>
             <table>
                 <tr>
                     <th>Nombre</th>
-                    <th>Email</th>
-                    <th>CI</th>
-                    <th>Direccion</th>
-                    <th>Telefono</th>
+                    <th>Detalle</th>
+                    <th>Modelo</th>
+                    <th>Color</th>
+                    <th>Dimension</th>
+                    <th>Stock</th>
+                    <th>Categoria</th>
                 </tr>
-                {% for p in proveedores %}
+                {% for a in articulos %}
                 <tr>
-                    <td> {{ p.nombreprov }} </td>
-                    <td> {{ p.emailprov }} </td>     
-                    <td> {{ p.ciprov }} </td> 
-                    <td> {{ p.direccionprov }} </td> 
-                    <td> {{ p.telefonoprov }} </td> 
+                    <td> {{ a.nombreArt }} </td>
+                    <td> {{ a.detalle }} </td>     
+                    <td> {{ a.modelo }} </td> 
+                    <td> {{ a.color }} </td> 
+                    <td> {{ a.dimension }} </td> 
+                    <td> {{ a.stock }} </td> 
+                    <td> {{ a.categoria }} </td>  
                 </tr>
                 {% endfor %}
             </table>

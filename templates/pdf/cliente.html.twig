@@ -1,7 +1,7 @@
 {% extends 'basepdf.html.twig' %}
 
 {% block title %}
-{{parent()}} Proveedores
+{{parent()}} Clientes
 {% endblock %}
 
 {% block stylesheets %}
@@ -23,7 +23,7 @@
 		font-family:arial;
 		text-align: center;
 		border: 1px solid #000000;
-		height: 25px;
+		height: 20px;
 		background-color: #5dc1b9;
 		color: white;
 		font-size:18px;
@@ -33,7 +33,7 @@
         width: 100%;
 		padding: 2px;
 		font-family:arial;
-        font-size:15px;
+        font-size:14px;
 		border: 1px solid #000000;
 		height: 25px;
 	}
@@ -71,24 +71,19 @@
     </head>
 
     <body> 
-        <h1>Reporte de Proveedores</h1>
+        <h1>Clientes mas frecuentes</h1>
         <br>
         <div>
             <table>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Email</th>
-                    <th>CI</th>
-                    <th>Direccion</th>
-                    <th>Telefono</th>
+                    <th>Cantidad</th>
+                    <th>Cliente</th>
                 </tr>
-                {% for p in proveedores %}
+                {% for v in ventas %}
                 <tr>
-                    <td> {{ p.nombreprov }} </td>
-                    <td> {{ p.emailprov }} </td>     
-                    <td> {{ p.ciprov }} </td> 
-                    <td> {{ p.direccionprov }} </td> 
-                    <td> {{ p.telefonoprov }} </td> 
+                    <td>{{ v.repetidos }}</td>                     
+                    <td>{{ v.nombrecliente }}</td> 
+
                 </tr>
                 {% endfor %}
             </table>

@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Venta;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @method Venta|null find($id, $lockMode = null, $lockVersion = null)
@@ -28,14 +29,44 @@ class VentaRepository extends ServiceEntityRepository
         ')->getResult();
     }
 
+    public function listamen()
+    {
+        return $this->getEntityManager()
+        ->createQuery('
+            SELECT v
+            From App:Venta v
+            WHERE Month(v.fecha_hora) = Month(:today)
+        ')->setParameter('today', new \DateTime())->getResult();
+    }
+
+    public function listasem()
+    {
+        return $this->getEntityManager()
+        ->createQuery('
+            SELECT v
+            From App:Venta v
+            WHERE v.fecha_hora between :td and :today
+        ')->setParameter('today', new \DateTime())->setParameter('td', new \DateTime('-15 days'))->getResult();
+    }
+
     public function listafecha(string $fi, string $ff)
     {
         return $this->getEntityManager()
         ->createQuery('
-            SELECT i
-            From App:Venta i
-            WHERE i.fecha_hora between :fi and :ff
+            SELECT v
+            From App:Venta v
+            WHERE v.fecha_hora between :fi and :ff
         ')->setParameter('fi', $fi)->setParameter('ff', $ff)->getResult();
+    }
+
+    public function clientemas()
+    {
+        return $this->getEntityManager()
+        ->createQuery('
+            SELECT COUNT(v.cicliente) as repetidos, v.nombrecliente
+            From App:Venta v
+            GROUP BY v.nombrecliente ORDER BY repetidos DESC
+        ')->getResult();
     }
 
     // /**

@@ -1,7 +1,7 @@
 {% extends 'basepdf.html.twig' %}
 
 {% block title %}
-{{parent()}} Proveedores
+{{parent()}} Ingresos Semanales
 {% endblock %}
 
 {% block stylesheets %}
@@ -71,24 +71,32 @@
     </head>
 
     <body> 
-        <h1>Reporte de Proveedores</h1>
+        <h1>Reporte de Ingresos</h1>
         <br>
+        <label> Desde: {{ f_sem|date('d-m-Y') }} </label>
+        <label> Hasta: {{ fechas|date('d-m-Y') }} </label>
         <div>
             <table>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Email</th>
-                    <th>CI</th>
-                    <th>Direccion</th>
-                    <th>Telefono</th>
+                    <th># Comprobante</th>
+                    <th>Serie Comprobante</th>
+                    <th>Tipo Comprobante</th>
+                    <th>Fecha</th>
+                    <th>Impuestos</th>
+                    <th>Estado</th>
+                    <th>Persona</th>
+                    <th>Proveedor</th>
                 </tr>
-                {% for p in proveedores %}
+                {% for i in ingresos %}
                 <tr>
-                    <td> {{ p.nombreprov }} </td>
-                    <td> {{ p.emailprov }} </td>     
-                    <td> {{ p.ciprov }} </td> 
-                    <td> {{ p.direccionprov }} </td> 
-                    <td> {{ p.telefonoprov }} </td> 
+                    <td> {{ i.numcomprobante }} </td> 
+                    <td> {{ i.seriecomprobante }} </td> 
+                    <td> {{ i.tipocomprobante }} </td> 
+                    <td> {{ i.fechahora|date('d-m-Y') }} </td>  
+                    <td> {{ i.impuesto }} </td>  
+                    <td> {{ i.estado }} </td>  
+                    <td> {{ i.persona }} </td>  
+                    <td> {{ i.proveedores }} </td>   
                 </tr>
                 {% endfor %}
             </table>

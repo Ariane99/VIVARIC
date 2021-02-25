@@ -1,7 +1,7 @@
 {% extends 'basepdf.html.twig' %}
 
 {% block title %}
-{{parent()}} Categoria
+{{parent()}} Rangos
 {% endblock %}
 
 {% block stylesheets %}
@@ -75,7 +75,7 @@
                 <h1>Reporte de Ingresos</h1>
                 <br>
                 <label> Desde: {{ f_inicio|date('d-m-Y') }} </label>
-                <label> Hasta {{ f_fin|date('d-m-Y') }} </label>
+                <label> Hasta: {{ f_fin|date('d-m-Y') }} </label>
                 <div>
                     <table>
                         <tr>
@@ -106,7 +106,7 @@
                 <h1>Reporte de Ventas</h1>
                 <br>
                 <label> Desde: {{ f_inicio|date('d-m-Y') }} </label>
-                <label> Hasta {{ f_fin|date('d-m-Y') }} </label>
+                <label> Hasta: {{ f_fin|date('d-m-Y') }} </label>
                 <div>
                     <table>
                         <thead>

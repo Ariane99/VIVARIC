@@ -16,6 +16,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
@@ -87,8 +88,9 @@ class VentaCrudController extends AbstractCrudController
             TextField::new('ciudad','Ciudad Cliente')
                 ->setTextAlign('center')
             ,
-            TextField::new('tipo_comprobante','Tipo de Comprobante')
+            ChoiceField::new('tipo_comprobante','Tipo de Comprobante')
                 ->setTextAlign('center')
+                ->setChoices(array('Factura'=>'Factura', 'Boleta'=>'Boleta'))
             ,
             TextField::new('serie_comprobante','Serie de Comprobante')
                 ->setTextAlign('center')
@@ -103,8 +105,9 @@ class VentaCrudController extends AbstractCrudController
             NumberField::new('impuesto')
                 ->setTextAlign('center')
             ,
-            TextField::new('estado')
+            ChoiceField::new('estado','Estado')
                 ->setTextAlign('center')
+                ->setChoices(array('Cancelado'=>'Cancelado', 'Pendiente'=>'Pendiente'))
             ,
             NumberField::new('total_venta','Total de Venta')
                 ->setTextAlign('center')

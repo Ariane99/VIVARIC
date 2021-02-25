@@ -16,6 +16,7 @@ use App\Entity\Proveedores;
 use App\Entity\Persona;
 use App\Entity\Ingreso;
 use App\Entity\Venta;
+use App\Entity\DetalleVenta;
 
 // Include Dompdf required namespaces
 use Dompdf\Dompdf;
@@ -55,7 +56,7 @@ class PDFController extends AbstractController
         $dompdf->loadHtml($html);
         
         // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
-        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->setPaper('letter', 'portrait');
 
         // Render the HTML as PDF
         $dompdf->render();
@@ -218,6 +219,84 @@ class PDFController extends AbstractController
         exit(0);
     }
 
+    #[Route('/pdfingresomen', name: 'pdf_ingresomen')]
+    public function ingresomenpdf(): Response
+    {
+        $ingresos=$this->getDoctrine()->getRepository(Ingreso::class)->listamen();
+        $fechas = new \DateTime();
+
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        
+        $pdfOptions->set('defaultFont', 'Arial');
+        // Instantiate Dompdf with our options
+        
+        $dompdf = new Dompdf($pdfOptions);
+        
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('pdf/ingresosmen.html.twig', [
+            'ingresos' => $ingresos,
+            'fechas' => $fechas
+        ]);
+        
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+        
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('letter', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => false
+        ]);
+        
+        exit(0);
+    }  
+
+
+    #[Route('/pdfingresosem', name: 'pdf_ingresosem')]
+    public function ingresosempdf(): Response
+    {
+        $ingresos=$this->getDoctrine()->getRepository(Ingreso::class)->listasem();
+        $fechas = new \DateTime();
+        $f_sem = new \DateTime('-15 days');
+
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        
+        $pdfOptions->set('defaultFont', 'Arial');
+        // Instantiate Dompdf with our options
+        
+        $dompdf = new Dompdf($pdfOptions);
+        
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('pdf/ingresossem.html.twig', [
+            'ingresos' => $ingresos,
+            'fechas' => $fechas,
+            'f_sem' => $f_sem
+        ]);
+        
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+        
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('letter', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => false
+        ]);
+        
+        exit(0);
+    }  
+
+
     #[Route('/pdfventa', name: 'pdf_venta')]
     public function ventapdf(): Response
     {
@@ -255,10 +334,121 @@ class PDFController extends AbstractController
         exit(0);
     }
 
-    //////////////////////////////////////////////////////////////////////////////////////////////
+    #[Route('/pdfventamen', name: 'pdf_ventamen')]
+    public function ventamenpdf(): Response
+    {
+        $ventas=$this->getDoctrine()->getRepository(Venta::class)->listamen();
+        $fechas = new \DateTime();
+
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        
+        $pdfOptions->set('defaultFont', 'Arial');
+        // Instantiate Dompdf with our options
+        
+        $dompdf = new Dompdf($pdfOptions);
+        
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('pdf/ventasmen.html.twig', [
+            'ventas' => $ventas,
+            'fechas' => $fechas
+        ]);
+        
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+        
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('letter', 'landscape');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => false
+        ]);
+        
+        exit(0);
+    }
+
+    #[Route('/pdfventasem', name: 'pdf_ventasem')]
+    public function ventasempdf(): Response
+    {
+        $ventas=$this->getDoctrine()->getRepository(Venta::class)->listasem();
+        $fechas = new \DateTime();
+        $f_sem = new \DateTime('-15 days');
+
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        
+        $pdfOptions->set('defaultFont', 'Arial');
+        // Instantiate Dompdf with our options
+        
+        $dompdf = new Dompdf($pdfOptions);
+        
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('pdf/ventassem.html.twig', [
+            'ventas' => $ventas,
+            'fechas' => $fechas,
+            'f_sem' => $f_sem
+        ]);
+        
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+        
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('letter', 'landscape');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => false
+        ]);
+        
+        exit(0);
+    }
+
+    #[Route('/pdfmasventa', name: 'pdf_masventa')]
+    public function masventapdf(): Response
+    {
+        $articulos=$this->getDoctrine()->getRepository(Articulo::class)->masventa();
+        $fechas = new \DateTime();
+
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        
+        $pdfOptions->set('defaultFont', 'Arial');
+        // Instantiate Dompdf with our options
+        
+        $dompdf = new Dompdf($pdfOptions);
+        
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('pdf/ventasmas.html.twig', [
+            'articulos' => $articulos,
+            'fechas' => $fechas,
+        ]);
+        
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+        
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('letter', 'landscape');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => false
+        ]);
+        
+        exit(0);
+    }
 
     #[Route('/pdfigven', name: 'pdf_igven', methods: ['GET'])]
-    public function pruebapdf(Request $request): Response
+    public function igvenpdf(Request $request): Response
     {
         $f_inicio=$request->query->get('f_inicio');
         $f_fin=$request->query->get('f_fin');
@@ -305,4 +495,42 @@ class PDFController extends AbstractController
         
         exit(0);
     }
+
+    #[Route('/pdfcliente', name: 'pdf_cliente')]
+    public function clientepdf(): Response
+    {
+        $ventas=$this->getDoctrine()->getRepository(Venta::class)->clientemas();
+        $fechas = new \DateTime();
+
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        
+        $pdfOptions->set('defaultFont', 'Arial');
+        // Instantiate Dompdf with our options
+        
+        $dompdf = new Dompdf($pdfOptions);
+        
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('pdf/cliente.html.twig', [
+            'ventas' => $ventas,
+            'fechas' => $fechas
+        ]);
+        
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+        
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('letter', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => false
+        ]);
+        
+        exit(0);
+    }
+
 }

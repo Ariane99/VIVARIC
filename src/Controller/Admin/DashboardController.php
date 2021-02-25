@@ -57,7 +57,7 @@ class DashboardController extends AbstractDashboardController
         //REPORTES
         yield MenuItem::linktoRoute('Reportes', 'fas fa-file-alt','pdf'); 
     }
-
+    
     //CSS PERSONALIZADO
     public function configureAssets(): Assets
     {
