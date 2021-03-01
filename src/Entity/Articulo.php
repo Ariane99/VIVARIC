@@ -43,7 +43,7 @@ class Articulo
     private $dimension;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"unsigned"=true})
      */
     private $stock;
 
@@ -56,8 +56,6 @@ class Articulo
      * @ORM\OneToMany(targetEntity="App\Entity\DetalleIngreso", mappedBy="articulo", cascade={"persist"}))
      */
     private $detalleingreso;
-
-
     
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\DetalleVenta", mappedBy="articulo", cascade={"persist"}))
@@ -165,7 +163,7 @@ class Articulo
 
     public function getStock(): ?int
     {
-
+        
         return $this->stock;
     }
 

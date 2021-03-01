@@ -224,4 +224,14 @@ class Ingreso
     {
         return $this->detalleingreso;
     }
+
+    public function total() 
+    {
+        $i = 0;
+        foreach ($this->getDetalleIngreso() as $di) {
+            $i +=  $di->getPrecioCompra();
+        }
+        return strval($i);
+    }
+
 }

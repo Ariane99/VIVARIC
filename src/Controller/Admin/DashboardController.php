@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Venta;
+use App\Entity\Gastos;
 use App\Entity\Ingreso;
 use App\Entity\Persona;
 use App\Entity\Articulo;
@@ -15,9 +16,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
-use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 
 //CSS
+use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
@@ -49,11 +50,13 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Categoria', 'fas fa-tags', Categoria::class);
         yield MenuItem::linkToCrud('Detalle ingreso', 'fas fa-cart-plus', DetalleIngreso::class);
         yield MenuItem::linkToCrud('Invertario', 'fas fa-boxes', Articulo::class);
-        yield MenuItem::linkToCrud('Ingreso', 'fas fa-people-carry', Ingreso::class);        
-        yield MenuItem::linkToCrud('Venta', 'fas fa-store', Venta::class);        
-        yield MenuItem::linkToCrud('Detalle Venta', 'fas fa-cart-plus', DetalleVenta::class);        
-        yield MenuItem::linkToCrud('Persona', 'fas fa-users', Persona::class);       
-        yield MenuItem::linkToCrud('Proveedor', 'fas fa-parachute-box', Proveedores::class); 
+        yield MenuItem::linkToCrud('Ingreso', 'fas fa-people-carry', Ingreso::class);
+        yield MenuItem::linkToCrud('Venta', 'fas fa-store', Venta::class);
+        yield MenuItem::linkToCrud('Detalle Venta', 'fas fa-cart-plus', DetalleVenta::class);
+        yield MenuItem::linkToCrud('Persona', 'fas fa-users', Persona::class);
+        yield MenuItem::linkToCrud('Proveedor', 'fas fa-parachute-box', Proveedores::class);
+        yield MenuItem::linkToCrud('Gastos', 'fas fa-coins', Gastos::class);
+         
         //REPORTES
         yield MenuItem::linktoRoute('Reportes', 'fas fa-file-alt','pdf'); 
     }

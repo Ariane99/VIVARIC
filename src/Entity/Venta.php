@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\VentaRepository;
+use App\Entity\DetalleVenta;
 use Doctrine\ORM\Mapping as ORM;
 
+use App\Repository\VentaRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -75,7 +76,7 @@ class Venta
     private $persona;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\DetalleVenta", mappedBy="venta", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\DetalleVenta", mappedBy="venta", cascade={"persist","remove"})
      */
     private $detalleventa;
 
@@ -269,8 +270,14 @@ class Venta
         return $this;
     }
 
-
-   
-
+    
+    public function total() 
+    {
+        $i = 0;
+        foreach ($this->getDetalleVenta() as $dt) {
+            $i +=  $dt->getPrecioVenta();
+        }
+        return strval($i);
+    }
 
 }

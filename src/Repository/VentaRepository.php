@@ -69,6 +69,22 @@ class VentaRepository extends ServiceEntityRepository
         ')->getResult();
     }
 
+    public function update(Request $request): Response
+    {
+        // ...
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // do some sort of processing
+
+            $this->addFlash(
+                'notice',
+                'Your changes were saved!'
+            );
+            // $this->addFlash() is equivalent to $request->getSession()->getFlashBag()->add()
+
+        }   
+    }
+
     // /**
     //  * @return Venta[] Returns an array of Venta objects
     //  */

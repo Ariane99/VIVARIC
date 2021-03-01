@@ -13,12 +13,16 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Validator\Constraints\DateTime;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\ChoiceFilter;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -66,8 +70,8 @@ class IngresoCrudController extends AbstractCrudController
     {
         return $crud
             ->showEntityActionsAsDropdown()
-            ->setEntityLabelInSingular('Ingreso') //Form
-            ->setEntityLabelInPlural('Ingresos') //Index
+            ->setEntityLabelInSingular('Ingreso Almacen') //Form
+            ->setEntityLabelInPlural('Ingresos Almacen') //Index
         ;
     }
 
@@ -75,7 +79,9 @@ class IngresoCrudController extends AbstractCrudController
     {   
         return [
             IdField::new('id')
+                ->hideOnIndex()
                 ->hideOnForm()
+                ->hideOnDetail()
                 ->setTextAlign('center')
             ,
             FormField::addPanel('Informacion Ingreso')
@@ -85,7 +91,7 @@ class IngresoCrudController extends AbstractCrudController
                 ->setTextAlign('center')
                 ->setChoices(array('Factura'=>'Factura', 'Boleta'=>'Boleta'))
             ,
-            TextField::new('serie_comprobante','Serie de Comprobante')
+            TextField::new('serie_comprobante','N° de RUT')
                 ->setTextAlign('center')
             ,
             TextField::new('num_comprobante','N° de Comprobante')
@@ -123,6 +129,23 @@ class IngresoCrudController extends AbstractCrudController
                     'by_reference' => 'false'
                 ])
             ,
+            TextField::new('total','TOTAL')
+            ->hideOnForm()
+            ->setTextAlign('center')
+            ,
         ];
+    }
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            // most of the times there is no need to define the
+            // filter type because EasyAdmin can guess it automatically
+            ->add(ChoiceFilter::new('estado')->setChoices(array('Cancelado'=>'Cancelado', 'Pendiente'=>'Pendiente')))
+            ->add(ChoiceFilter::new('tipo_comprobante')->setChoices(array('Cancelado'=>'Cancelado', 'Pendiente'=>'Pendiente')))
+            ->add('fecha_hora')
+            ->add('persona')
+            ->add('proveedores')
+            ->add(EntityFilter::new('detalleingreso'))
+        ;
     }
 }

@@ -17,7 +17,7 @@
 
 .sidebar-menu .header { /* TITULO DEL MENU */
     color: var(--gray-600);
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 500;
     margin-top: 15px;
     padding: 7px 5px 7px 0;
@@ -27,7 +27,7 @@
 .sidebar-menu a {
     color: var(--text-color-dark);
     display: block;
-    line-height: 50px; /* Espacio entre elementos del menu*/
+    line-height: 40px; /* Espacio entre elementos del menu*/
     padding: 4px 5px 8px 0;
     font-size: 20px; /* Tamaño Letra*/
 }

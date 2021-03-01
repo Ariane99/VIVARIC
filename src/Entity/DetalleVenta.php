@@ -94,6 +94,6 @@ class DetalleVenta
 
     public function __toString()
     {
-        return $this->id;
+        return $this->articulo.' - '.$this->cantidad.' - '.$this->precio_venta.' - Total: '.$this->cantidad*$this->precio_venta;
     }
 }

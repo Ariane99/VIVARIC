@@ -28,6 +28,18 @@ class ArticuloRepository extends ServiceEntityRepository
             ')->getResult();
     }
 
+    //////////////////
+    public function getArticulo(string $articulo)
+    {
+        return $this->getEntityManager()
+            ->createQuery('
+                SELECT a.stock
+                From App:Articulo a 
+                WHERE a.nombreArt = :articulo
+            ')->setParameter('articulo', $articulo)->getResult();
+    }
+    ////////////////////
+
     public function masventa()
     {
         return $this->getEntityManager()

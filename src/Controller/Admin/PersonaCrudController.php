@@ -85,7 +85,8 @@ class PersonaCrudController extends AbstractCrudController
             ,
             PasswordField::new('password', 'Contraseña')
                 ->setTextAlign('center')
-            ,//->onlyOnForms(),
+                ->onlyOnForms()
+            ,
         ];
     }
 }

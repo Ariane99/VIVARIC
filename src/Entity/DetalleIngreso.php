@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\DetalleIngresoRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\DetalleIngresoRepository;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @ORM\Entity(repositoryClass=DetalleIngresoRepository::class)
@@ -161,6 +162,6 @@ class DetalleIngreso
 
     public function __toString()
     {
-        return $this->id;
+        return $this->articulo.' - '.$this->cantidad.' - '.$this->precio_compra.' - Total: '.$this->cantidad*$this->precio_compra;
     }
 }
